@@ -3,7 +3,9 @@ package com.devsuperior.dscommerce.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tb_product")
@@ -88,5 +90,9 @@ public class Product {
     public Set<OrderItem> getItems() {
         return items;
     }
+    public List<Product> getProducts(){
+        return this.items.stream().map(OrderItem::getProduct).toList();
+    }
+
 
 }
